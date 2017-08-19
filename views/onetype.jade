@@ -7,5 +7,5 @@ block content
     if positions
       form(method="post")
         each item in positions
-          input.text-input(type="text", name=item.formKey, placeholder=`请输入${item.keyName}`)
+          input.text-input(type="text", name=item.formKey, placeholder=`请输入${item.keyName}`, value=item.defaultValue)
         button.produce-button(type="submit") 立刻生成

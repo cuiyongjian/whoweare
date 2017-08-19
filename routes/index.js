@@ -14,36 +14,42 @@ var topicType = {
       {
         formKey: 'who',
         keyName: '第一行问题',
+        defaultValue: '我们是谁？',
         x: 82,
         y: 44
       },
       {
         formKey: 'whoanwser',
         keyName: '第一行答案',
+        defaultValue: '甲方！',
         x: 384,
         y: 46
       },
       {
         formKey: 'thenask',
         keyName: '第二行问题',
+        defaultValue: '我们要什么？',
         x: 82,
         y: 282
       },
       {
         formKey: 'thenawnser',
         keyName: '第二行答案',
+        defaultValue: '不知道！',
         x: 384,
         y: 284
       },
       {
         formKey: 'lastask',
         keyName: '最后一行问题',
+        defaultValue: '什么时候要？',
         x: 82,
         y: 512
       },
       {
         formKey: 'lastawnser',
         keyName: '最后一行答案',
+        defaultValue: '现在要！',
         x: 384,
         y: 514
       }
@@ -102,7 +108,7 @@ router.post('/:type', function (req, res, next) {
     return
   }
 
-  var pic = gm(sourcePic).font(path.join(__dirname, '../public/fonts/simhei.ttf'), 22)
+  var pic = gm(sourcePic).font(path.join(__dirname, '../public/fonts/simhei.ttf'), 24)
   type.position.forEach(item=>{
     // 对每个坐标写入文字
     debug('写入坐标', item.x, item.y, req.body[item.formKey])
