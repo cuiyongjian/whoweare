@@ -124,7 +124,7 @@ router.post('/:type', function (req, res, next) {
         next(err)
         return
       }
-      res.type('png')
+      res.type('jpg')
       stdout.pipe(res)
     })
   })
