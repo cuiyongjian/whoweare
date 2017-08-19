@@ -65,3 +65,9 @@ a {
   line-height: 30px;
   margin-top: 16px;
 }
+
+
+/* 结果展示页 */
+.result p {
+  text-align: center;
+}

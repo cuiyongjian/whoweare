@@ -118,15 +118,27 @@ router.post('/:type', function (req, res, next) {
   pic.resize(600).autoOrient().toBuffer('PNG', function (err, buf) {
     // 必须先toBuff当做一个临时文件，再重新读入后append。否则有问题...
     console.log('合并上下两张图并输出结果')
-    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(400).quality(60).stream('jpg', function (err, stdout, stderr) {
+    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(400).quality(60).toBuffer('JPG', function (err, buf) {
       if (err) {
         err.showMsg = '服务端合并图片出错'
         next(err)
         return
       }
-      res.type('jpg')
-      stdout.pipe(res)
+      var base64Str = buf.toString('base64')
+      var datauri = 'data:image/png;base64,' + base64Str;
+      debug('dataurl是', datauri)
+      res.render('result', {datauri: datauri})
     })
+
+    // .stream('jpg', function (err, stdout, stderr) {
+    //   if (err) {
+    //     err.showMsg = '服务端合并图片出错'
+    //     next(err)
+    //     return
+    //   }
+    //   res.type('jpeg')
+    //   stdout.pipe(res)
+    // })
   })
 
   // var qrcode = gm(path.join(__dirname, '../public/images/qr.png')).resize(300, 300).write(path.join(__dirname, '../qrcode.png'), function (err) {
