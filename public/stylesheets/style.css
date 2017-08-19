@@ -68,6 +68,27 @@ a {
 
 
 /* 结果展示页 */
+.result {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+}
 .result p {
   text-align: center;
+}
+.result img {
+  max-width: 100%;
+}
+.result .loading-tips {
+  min-height: 100px;
+  text-align: center;
+  font-size: 14px;
+  /* display: flex; */
+  display: flex;
+  color: #c5783b;
+  align-items: center;
+  justify-content: center;
 }
