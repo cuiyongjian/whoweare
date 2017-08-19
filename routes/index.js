@@ -102,7 +102,7 @@ router.post('/:type', function (req, res, next) {
   pic.resize(600).autoOrient().toBuffer('PNG', function (err, buf) {
     // 必须先toBuff当做一个临时文件，再重新读入后append。否则有问题...
     console.log('合并上下两张图并输出结果')
-    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(400).stream('png', function (err, stdout, stderr) {
+    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(300).quality(60).stream('png', function (err, stdout, stderr) {
       if (err) {
         err.showMsg = '服务端合并图片出错'
         next(err)
