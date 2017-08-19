@@ -25,6 +25,7 @@ app.use('/catoonpic', express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
   res.setHeader('X-Powered-By', 'niubi')
+  next()
 })
 app.use('/catoonpic', index);
 app.use('/users', users);
