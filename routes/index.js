@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Jimp = require('jimp')
 var path = require('path')
 var debug = require('debug')('whoweare:index');
 var gm = require('gm')
