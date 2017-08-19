@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p 欢迎来到 #{title}
+  if positions
+    form(method="post")
+      each item in positions
+        input(type="text", name=item.formKey, placeholder=`请输入${item.keyName}`)
+      button(type="submit") 立刻生成
