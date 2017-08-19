@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p 欢迎来到 #{title}
-  if positions
-    form(method="post")
-      each item in positions
-        input(type="text", name=item.formKey, placeholder=`请输入${item.keyName}`)
-      button(type="submit") 立刻生成
+  div.home-page
+    h1 漫画对白生成器
+    p 欢迎来到漫画对白生成器
+    p 这里有最热门流行的漫画对白一键生成。
+
+    p 快快发挥你的创意吧。
+    each item in list
+      a.func-link(href=`/catoonpic/${item.id}`) #{item.name}

@@ -8,6 +8,7 @@ var gm = require('gm')
 var topicType = {
   whoweare: {
     name: '我们是谁',
+    tips: '输入对白后，点击立即生成',
     source: 'whoweare.png',
     position: [
       {
@@ -53,7 +54,15 @@ var topicType = {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('未知的主题')
+  var topicList = []
+  Object.keys(topicType).forEach(key=>{
+    topicList.push({
+      id: key,
+      name: topicType[key].name
+    })
+  })
+  debug('首页的主题列表', topicList)
+  res.render('index', {list: topicList})
 });
 
 /* GET home page. */
@@ -61,8 +70,9 @@ router.get('/:type', function(req, res, next) {
   // var formKeys = topicType[req,params.type].position.map(item=>{
   //   return item
   // })
-  res.render('index', {
+  res.render('onetype', {
     title: topicType[req.params.type].name + '生成器',
+    tips: topicType[req.params.type].tips,
     positions: topicType[req.params.type].position
   });
 });
@@ -95,14 +105,14 @@ router.post('/:type', function (req, res, next) {
   var pic = gm(sourcePic).font(path.join(__dirname, '../public/fonts/simhei.ttf'), 22)
   type.position.forEach(item=>{
     // 对每个坐标写入文字
-    debug('写入坐标', item.x, item.y)
+    debug('写入坐标', item.x, item.y, req.body[item.formKey])
     pic = pic.drawText(item.x, item.y, req.body[item.formKey])
   })
 
   pic.resize(600).autoOrient().toBuffer('PNG', function (err, buf) {
     // 必须先toBuff当做一个临时文件，再重新读入后append。否则有问题...
     console.log('合并上下两张图并输出结果')
-    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(300).quality(60).stream('png', function (err, stdout, stderr) {
+    gm(buf, 'image.png').append(path.join(__dirname, '../public/images/qrcode.png')).resize(400).quality(60).stream('jpg', function (err, stdout, stderr) {
       if (err) {
         err.showMsg = '服务端合并图片出错'
         next(err)

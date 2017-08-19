@@ -6,3 +6,62 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+
+/* 公共 */
+.home-page h1, .pic-func-page h1 {
+  text-align: center;
+}
+.home-page p, .pic-func-page p {
+  text-align: center;
+  font-size: 14px;
+}
+
+/* 首页 */
+.home-page .func-link {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  line-height: 50px;
+  background: #ccc;
+  text-align: center;
+  font-size: 16px;
+  color: rgb(224, 134, 62);
+  text-decoration: none;
+}
+
+.home-page .func-link:hover {
+  background: #8a8a8a;
+}
+
+
+
+/* 用户输入内荣的交互页 */
+.pic-func-page .text-input {
+  display: block;
+  width: 80%;
+  border: none;
+  padding: 2px 6px;
+  margin: 8px auto;
+  line-height: 22px;
+  border: 1px solid #d4d4d4;
+  font-size: 14px;
+  color: #828282;
+}
+.pic-func-page .text-input:focus {
+  outline: none;
+}
+
+
+.pic-func-page .produce-button {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border: none;
+  background: #7b7b7b;
+  border-radius: 3px;
+  color: #f9f9f9;
+  line-height: 30px;
+  margin-top: 16px;
+}
